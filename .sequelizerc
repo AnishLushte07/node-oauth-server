@@ -1,0 +1,7 @@
+
+module.exports = {
+    'config': './component/oauth/sqldb/sequelize.js',
+    'migrations-path': './component/oauth/sqldb/migrations',
+    'seeders-path': './component/oauth/sqldb/seeders',
+    'models-path': './component/oauth/sqldb/models',
+};
