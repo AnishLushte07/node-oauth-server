@@ -3,11 +3,17 @@ module.exports = (DataTypes) => ({
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
     },
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    email: DataTypes.STRING,
-    deleted_by: DataTypes.INTEGER,
-    updatedAt: DataTypes.DATE,
+    first_name: DataTypes.STRING(100),
+    last_name: DataTypes.STRING(100),
+    email: {
+        type: DataTypes.STRING(100),
+        unique: true,
+    },
+    password: DataTypes.STRING(100),
+    email_verified: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    }
 });

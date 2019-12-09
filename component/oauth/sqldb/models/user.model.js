@@ -1,3 +1,5 @@
+const crypto = require('crypto');
+const salt = 'anishlushte';
 const properties = require('../property/user.property');
 
 module.exports = (sequelize, DataTypes) => {
@@ -6,14 +8,20 @@ module.exports = (sequelize, DataTypes) => {
     tableName: 'users',
     timestamps: true,
     underscored: true,
-    paranoid: true,
-    updatedAt: 'updated_on',
+    updatedAt: false,
     createdAt: 'created_on',
-    deletedAt: 'deleted_on',
   });
 
-  User.associate = function(models) {
-    // associations can be defined here
+  User.associate = function(db) {
+  };
+
+  User.prototype.verifyPassword = function (password) {
+    const hashedPass = crypto
+      .createHash('md5')
+      .update(salt + password)
+      .digest('hex');
+
+    return Promise.resolve(hashedPass === this.password);
   };
 
   return User;

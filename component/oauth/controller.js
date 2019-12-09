@@ -2,7 +2,7 @@ const oauthServer = require('oauth2-server');
 const Request = oauthServer.Request;
 const Response = oauthServer.Response;
 
-const oauth = require('./oauth');
+const oauth = require('./oauth.module');
 
 module.exports = {
     token,
@@ -13,7 +13,9 @@ async function token(req, res, next) {
     try {
         const request = new Request(req);
         const response = new Response(res);
-        const token = await oauth.token(request, response);
+        const token = await oauth.token(request, response, {
+          requireClientAuthentication: { password: false },
+        });
 
         return res.json(token)
     } catch (err) {

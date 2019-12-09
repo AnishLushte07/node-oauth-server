@@ -60,10 +60,10 @@ const db = {
 };
 
 [
-    'Client',
+    'Client', 'User', 'AccessToken', 'RefreshToken', 'AuthorizationCode',
 ].forEach((model) => {
     db[model] = db.sequelizeCommon
-        .import(`./model/${_.camelCase(model)}/${_.camelCase(model)}.model.js`);
+        .import(`./models/${_.camelCase(model)}.model.js`);
 });
 
 Object.keys(db).forEach((modelName) => {

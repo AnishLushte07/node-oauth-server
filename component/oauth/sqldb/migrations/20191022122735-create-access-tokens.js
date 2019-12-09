@@ -4,12 +4,12 @@ const {
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('users', Object.assign({},
-        properties('user', Sequelize),
+    return queryInterface.createTable('access_tokens', Object.assign({},
+        properties('accessToken', Sequelize),
         timestamps(['c'], Sequelize),
     ), engine);
   },
   down: (queryInterface) => {
-    return queryInterface.dropTable('users');
+    return queryInterface.dropTable('access_tokens');
   },
 };
